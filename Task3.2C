@@ -1,0 +1,28 @@
+SYSTEM_THREAD(ENABLED);
+
+
+const pin_t SENSOR_PIN = A0;
+
+
+int analogvalue;
+
+
+
+void setup()
+{
+
+
+    Particle.variable("lightValue", analogvalue);
+
+
+}
+
+void loop()
+{
+
+    analogvalue = analogRead(SENSOR_PIN);
+
+    Particle.publish("lightValue", String(analogvalue), PRIVATE);//for my own testing
+
+    delay(300);
+}
